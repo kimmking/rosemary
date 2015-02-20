@@ -1,0 +1,22 @@
+{
+  "name": "rosemary",
+  "version": "1.0.0",
+  "description": "you share rose get fun",
+  "main": "rosemary.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/kimmking/rosemary"
+  },
+  "keywords": [
+    "rosemary"
+  ],
+  "author": "kimmking",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kimmking/rosemary/issues"
+  },
+  "homepage": "https://github.com/kimmking/rosemary"
+}
