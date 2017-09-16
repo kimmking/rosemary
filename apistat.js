@@ -31,6 +31,9 @@ request(url+'/v2/api-docs', function (error, response, body) {
 
         var icount = 1;
         var gcount = 1;
+        var status = [0, 0, 0, 0] ;
+        var statusCodes = ["开发中","已完成","已联调","已废弃"] ;
+
         tags.forEach(function (t) {
             console.log("");
             console.log("## "+icount + ".接口类:", t.name);
@@ -47,16 +50,34 @@ request(url+'/v2/api-docs', function (error, response, body) {
                     console.log('- 响应类型:', op.consumes);
                     console.log('- 请求类型:', op.produces);
                     ocount++;gcount++;
+
+                    var desc = op.description;
+                    if(!!desc){
+                        for (var i = 0; i < statusCodes.length ; i++) {
+                            if(desc.indexOf(statusCodes[i]) > -1){
+                                status[i] = status[i] + 1
+                                continue;
+                            }
+                        }
+                    }
                 }
             );
 
             icount++;
         });
 
+        var unmark = gcount - status[0] - status[1] - status[2] - status[3];
         console.log('');
         console.log('## 统计信息');
         console.log('- 共有接口类'+ (icount-1)+'个');
         console.log('- 共有接口'+ (gcount-1)+'个');
+        console.log('- 开发中的接口'+ status[0]+'个，占比' + (status[0]*100.0/gcount).toFixed(2) + '%');
+        console.log('- 已完成的接口'+ status[1]+'个，占比' + (status[1]*100.0/gcount).toFixed(2) + '%');
+        console.log('- 已联调的接口'+ status[2]+'个，占比' + (status[2]*100.0/gcount).toFixed(2) + '%');
+        console.log('- 已废弃的接口'+ status[3]+'个，占比' + (status[3]*100.0/gcount).toFixed(2) + '%');
+        console.log('- 未标记的接口'+ unmark +'个，占比' + (unmark*100.0/gcount).toFixed(2) + '%');
+
+        console.log('- 总体进度 '+ ((status[1]*0.5+status[2])*100.0/(gcount - status[3])).toFixed(2) + '%');        
 
     }
 })
