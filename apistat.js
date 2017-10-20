@@ -69,6 +69,7 @@ request(url+'/v2/api-docs', function (error, response, body) {
         var unmark = gcount - status[0] - status[1] - status[2] - status[3];
         console.log('');
         console.log('## 统计信息');
+	console.log('### 已提供需求部分进度(12/12 模块)');
         console.log('- 共有接口类'+ (icount-1)+'个');
         console.log('- 共有接口'+ (gcount-1)+'个');
         console.log('- 开发中的接口'+ status[0]+'个，占比' + (status[0]*100.0/gcount).toFixed(2) + '%');
@@ -76,8 +77,14 @@ request(url+'/v2/api-docs', function (error, response, body) {
         console.log('- 已联调的接口'+ status[2]+'个，占比' + (status[2]*100.0/gcount).toFixed(2) + '%');
         console.log('- 已废弃的接口'+ status[3]+'个，占比' + (status[3]*100.0/gcount).toFixed(2) + '%');
         console.log('- 未标记的接口'+ unmark +'个，占比' + (unmark*100.0/gcount).toFixed(2) + '%');
+        console.log('- 提供需求部分的进度 '+ ((status[1]*0.5+status[2])*100.0/(gcount - status[3])).toFixed(2) + '%');    
 
-        console.log('- 总体进度 '+ ((status[1]*0.5+status[2])*100.0/(gcount - status[3])).toFixed(2) + '%');        
+	console.log('### 后端开发整体进度');
+	console.log('- 总体进度 '+ ((status[1]*0.5+status[2])*100.0/(gcount - status[3])).toFixed(2) + '%');
+
+        var nowDate = new Date();
+        var curTime = nowDate.toLocaleDateString() + " "+ nowDate.toLocaleTimeString();    
+        console.log('- 统计时间 '+ curTime); 
 
     }
 })
