@@ -81,7 +81,6 @@ request(url+'/v2/api-docs', function (error, response, body) {
 
 	console.log('### 后端开发整体进度');
 	console.log('- 总体进度 '+ ((status[1]*0.5+status[2])*100.0/(gcount - status[3])).toFixed(2) + '%');
-
         var nowDate = new Date();
         var curTime = nowDate.toLocaleDateString() + " "+ nowDate.toLocaleTimeString();    
         console.log('- 统计时间 '+ curTime); 
