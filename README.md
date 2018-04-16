@@ -20,6 +20,7 @@ Modify your swagger api-docs url in apistat.js and then,
 
 2. Or generate html docs:
 > ./as.sh
+
 then you will find result/index.html
 
 
